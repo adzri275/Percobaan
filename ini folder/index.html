@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek khodam</title>
+</head>
+<body>
+  <!--Kontainer Utama-->
+<section>
+        <div>
+            <input id="nama" style="border-radius: 5px; border: 1px solid rgb(204, 204, 204); box-sizing: border-box; margin-bottom: 20px; padding: 10px; width: 100%;" type="text" />
+            <br />
+            <button onclick="cekSekarang()" style="background-color: #007bff; border-radius: 5px; border: none; color: white; cursor: pointer; padding: 10px 20px;">Cek Sekarang</button>
+            <div id="loading" style="display: none; margin-top: 20px;">Loading...</div>
+        </div>
+    </section>
+    
+    <!--Popup Hasil-->
+    <div id="popup" style="background-color: white; border-radius: 10px; border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px; display: none; left: 50%; padding: 20px; position: fixed; text-align: center; top: 50%; transform: translate(-50%, -50%); width: 250px;">
+        <p id="result" style="margin-bottom: 20px;"></p>
+        <button onclick="closePopup()" style="background-color: #28a745; border-radius: 5px; border: none; color: white; cursor: pointer; padding: 10px 20px;">Tutup</button>
+    </div>
+    
+    <script>
+        const hewanFavorit = {
+            'a': 'Naga Sakit',
+            'b': 'Kambing Botak',
+            'c': 'Marmut Kejepit',
+            'd': 'Sapi Dermen',
+            'e': 'Permen Karet',
+            'f': 'Harimau Putih',
+            'g': 'Gorila Gila',
+            'h': 'Anak Pintar',
+            'i': 'kosong!',
+            'j': 'Jerapah Unyu',
+            'k': 'Karbu Motor',
+            'l': 'Oli Garden',
+            'm': 'Raja Singa',
+            'n': 'Belut Litrik',
+            'o': 'Semut Air',
+            'p': 'Dark Sistem',
+            'q': 'Gif Alok Bang',
+            'r': 'Ikan Buntal',
+            's': 'Serigala Malam',
+            't': 'Tupai Salto',
+            'u': 'Ular Pendek',
+            'v': 'Mobil Legen',
+            'w': 'kosong',
+            'x': 'Cupu',
+            'y': 'Beban Keluarga',
+            'z': 'Beban tim'
+        };
+    
+        function cekSekarang() {
+            const nama = document.getElementById('nama').value.trim();
+            if (nama === '') {
+                alert('Nama tidak boleh kosong');
+                return;
+            }
+    
+            document.getElementById('loading').style.display = 'block';
+    
+            setTimeout(() => {
+                const hurufPertama = nama.charAt(0).toLowerCase();
+                const favorit = hewanFavorit[hurufPertama] || 'Kodam tidak ditemukan';
+    
+                document.getElementById('result').innerText = ` Selamat ya, Kodam kamu adalah: ${favorit}`;
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('popup').style.display = 'block';
+            }, 5000);
+        }
+    
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+      </script>
+</body>    
+</html>
